@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Patched APK Repo (unofficial)</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2em;
+        color: #333;
+    }
+    .container {
+        max-width: 600px;
+        width: 100%;
+    }
+    .release {
+        margin: 15px 0;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .release h2 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #333;
+    }
+    .release p {
+        margin: 10px 0;
+        color: #666;
+    }
+    .release .download-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-top: 10px;
+        text-align: center;
+        width: 420px;  /* Fixed width for the buttons */
+        white-space: nowrap;  /* Prevents text from wrapping inside the button */
+        text-overflow: ellipsis; /* Adds "..." if text overflows */
+        overflow: hidden; /* Ensures overflow text doesn't break layout */
+    }
+    .release .download-btn:hover {
+        background-color: #218838;
+    }
+</style>
+</head>
+<body>
+    <h1>Minecraft Patched APK Repo</h1>
+    <code>unofficial apks yk...</code>
+    <code>born on 20241010_1457</code>
+    <code>page made by chatgpt cuz me no dev</code>
+    <br>
+<code><strong>Useful links:</strong>
+<a href="https://discord.gg/yss">YSS Discord server</a>
+<a href="https://github.com/ddf8196/MaterialBinLoader">MaterialBinLoader</a>
+<a href="https://github.com/mcbegamerxx954/mtbinloader2">MaterialBinLoader2</a>
+<a href="https://github.com/mcbegamerxx954/mcbe_shader_redirector">Draco</a>
+<a href="https://github.com/bambosan/MaterialBinLoader-Apk">MB Loader</a>
+<a href="https://github.com/CallMeSoumya2063/RandomCoolStuff/blob/main/MB%20Loader%20Mods.md">MB Mods</a>
+<a href="https://github.com/faizul726/matject">Matject</a>
+</code>
+
+    <div class="container">
+        <div id="releases"></div>
+    </div>
+
+    <script>
+        // Function to convert date string like '20241010' to 'Oct 10, 2024'
+        function formatReleaseDate(bodyText) {
+            const datePattern = /^\d{8}/; // Pattern to match date in the form YYYYMMDD
+            const match = bodyText.match(datePattern);
+
+            if (match) {
+                const dateString = match[0];
+                const year = dateString.substring(0, 4);
+                const month = dateString.substring(4, 6);
+                const day = dateString.substring(6, 8);
+
+                const dateObj = new Date(`${year}-${month}-${day}`);
+                const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                return dateObj.toLocaleDateString('en-US', options); // Format like "Oct 10, 2024"
+            }
+
+            return 'Unspecified'; // Return "Unspecified" if no valid date found
+        }
+
+        // Function to determine download button text based on file name
+        function getDownloadButtonText(fileName, sizeMB) {
+            if (fileName.includes("mbl2")) {
+                return `Download MBL2 Patched (${sizeMB} MB)`;
+            } else if (fileName.includes("mbl")) {
+                return `Download YSS Patched (${sizeMB} MB)`;
+            } else if (fileName.includes("draco")) {
+                return `Download Draco Patched (${sizeMB} MB)`;
+            } else {
+                return `Download (${sizeMB} MB)`; // Default if none of the keywords match
+            }
+        }
+
+        // Function to fetch releases and display them
+        async function fetchReleases() {
+            const apiUrl = 'https://api.github.com/repos/mcpebd/mcpatched/releases';
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const releasesContainer = document.getElementById('releases');
+                
+                data.forEach(release => {
+                    let totalDownloads = 0;  // To sum all downloads in a release
+                    let totalSize = 0;
+                    let downloadUrl = '';
+
+                    // Create a release element
+                    const releaseElement = document.createElement('div');
+                    releaseElement.classList.add('release');
+
+                    // Use the release body (with date) for the local time display
+                    const releaseDate = formatReleaseDate(release.body);
+
+                    // Add release name and creation date
+                    releaseElement.innerHTML = `
+                        <h2>${release.name}</h2>
+                        <p><strong>Creation Date:</strong> ${releaseDate}</p>
+                        <p><strong>Total Downloads:</strong> <span id="downloads-${release.id}">0</span></p>
+                    `;
+
+                    // Loop through all assets (files) and create a download button for each
+                    release.assets.forEach(asset => {
+                        totalDownloads += asset.download_count; // Sum downloads
+                        totalSize += asset.size;
+                        downloadUrl = asset.browser_download_url; // Use the latest asset's URL
+                        const fileSizeMB = (asset.size / (1024 * 1024)).toFixed(2); // Convert size to MB
+
+                        // Create a download button for each asset
+                        const downloadButtonText = getDownloadButtonText(asset.name, fileSizeMB);
+
+                        const downloadButton = document.createElement('a');
+                        downloadButton.classList.add('download-btn');
+                        downloadButton.href = downloadUrl;
+                        downloadButton.target = "_blank";
+                        downloadButton.textContent = downloadButtonText;
+
+                        releaseElement.appendChild(downloadButton);
+                    });
+
+                    totalSize = (totalSize / (1024 * 1024)).toFixed(2); // Convert total size to MB
+
+                    // Update total downloads display for this release
+                    const downloadsElement = releaseElement.querySelector(`#downloads-${release.id}`);
+                    downloadsElement.textContent = totalDownloads; // Update total download count
+
+                    // Append the release element to the container
+                    releasesContainer.appendChild(releaseElement);
+                });
+            } catch (error) {
+                console.error('Error fetching releases:', error);
+            }
+        }
+
+        // Fetch and display the releases when the page loads
+        fetchReleases();
+    </script>
+</body>
+</html>
