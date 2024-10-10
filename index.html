@@ -55,7 +55,9 @@
         font-size: 1.1em;
         margin-top: 10px;
         text-align: center;
-        width: 420px;  /* Fixed width for the buttons */
+        width: 100%;  /* Makes the button 100% width of its container */
+        max-width: 420px;  /* Limits button width to 420px */
+        box-sizing: border-box; /* Includes padding and border in width calculation */
         white-space: nowrap;  /* Prevents text from wrapping inside the button */
         text-overflow: ellipsis; /* Adds "..." if text overflows */
         overflow: hidden; /* Ensures overflow text doesn't break layout */
@@ -63,14 +65,31 @@
     .release .download-btn:hover {
         background-color: #218838;
     }
+
+    /* Make buttons smaller on smaller screens */
+    @media (max-width: 768px) {
+        .release .download-btn {
+            font-size: 0.9em; /* Smaller text size */
+            padding: 8px 16px; /* Smaller padding */
+        }
+    }
+
+    /* Make buttons even smaller on extra small screens */
+    @media (max-width: 480px) {
+        .release .download-btn {
+            font-size: 0.8em; /* Even smaller text size */
+            padding: 6px 12px; /* Even smaller padding */
+        }
+    }
 </style>
+
 </head>
 <body>
     <h1>Minecraft Patched APK Repo</h1>
     <code>unofficial apks yk...</code>
     <code>born on 20241010_1457</code>
     <code>page made by chatgpt cuz me no dev</code>
-    <p>
+    <br>
 <code><strong>Useful links:</strong>
 <a href="https://discord.gg/yss">YSS Discord server</a>
 <a href="https://github.com/ddf8196/MaterialBinLoader">MaterialBinLoader</a>
@@ -80,7 +99,6 @@
 <a href="https://github.com/CallMeSoumya2063/RandomCoolStuff/blob/main/MB%20Loader%20Mods.md">MB Mods</a>
 <a href="https://github.com/faizul726/matject">Matject</a>
 </code>
-        </p>
 
     <div class="container">
         <div id="releases"></div>
