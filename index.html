@@ -159,30 +159,34 @@
                     // Use the release body (with date) for the local time display
                     const releaseDate = formatReleaseDate(release.body);
 
-                    // Add release name and creation date
+                    // Add release name (as a link) and creation date
                     releaseElement.innerHTML = `
-                        <h2>${release.name}</h2>
+                        <h2><a href="${release.html_url}" target="_blank" style="text-decoration: none; color: black">${release.name}</a></h2>
                         <p><strong>Creation Date:</strong> ${releaseDate}</p>
                         <p><strong>Total Downloads:</strong> <span id="downloads-${release.id}">0</span></p>
+                        <p><p>
                     `;
 
                     // Loop through all assets (files) and create a download button for each
                     release.assets.forEach(asset => {
-                        totalDownloads += asset.download_count; // Sum downloads
-                        totalSize += asset.size;
-                        downloadUrl = asset.browser_download_url; // Use the latest asset's URL
-                        const fileSizeMB = (asset.size / (1024 * 1024)).toFixed(2); // Convert size to MB
+                        // Only process .apk files
+                        if (asset.name.endsWith('.apk')) {
+                            totalDownloads += asset.download_count; // Sum downloads
+                            totalSize += asset.size;
+                            downloadUrl = asset.browser_download_url; // Use the latest asset's URL
+                            const fileSizeMB = (asset.size / (1024 * 1024)).toFixed(2); // Convert size to MB
 
-                        // Create a download button for each asset
-                        const downloadButtonText = getDownloadButtonText(asset.name, fileSizeMB);
+                            // Create a download button for the .apk asset
+                            const downloadButtonText = getDownloadButtonText(asset.name, fileSizeMB);
 
-                        const downloadButton = document.createElement('a');
-                        downloadButton.classList.add('download-btn');
-                        downloadButton.href = downloadUrl;
-                        downloadButton.target = "_blank";
-                        downloadButton.textContent = downloadButtonText;
+                            const downloadButton = document.createElement('a');
+                            downloadButton.classList.add('download-btn');
+                            downloadButton.href = downloadUrl;
+                            downloadButton.target = "_blank";
+                            downloadButton.textContent = downloadButtonText;
 
-                        releaseElement.appendChild(downloadButton);
+                            releaseElement.appendChild(downloadButton);
+                        }
                     });
 
                     totalSize = (totalSize / (1024 * 1024)).toFixed(2); // Convert total size to MB
@@ -204,3 +208,4 @@
     </script>
 </body>
 </html>
+
