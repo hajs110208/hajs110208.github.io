@@ -129,7 +129,7 @@
             if (fileName.includes("mbl2")) {
                 return `Download MBL2 Patched (${sizeMB} MB)`;
             } else if (fileName.includes("mbl")) {
-                return `Download YSS Patched (${sizeMB} MB)`;
+                return `Download MBL Patched (${sizeMB} MB)`;
             } else if (fileName.includes("draco")) {
                 return `Download Draco Patched (${sizeMB} MB)`;
             } else {
@@ -174,7 +174,7 @@
                             totalDownloads += asset.download_count; // Sum downloads
                             totalSize += asset.size;
                             downloadUrl = asset.browser_download_url; // Use the latest asset's URL
-                            const fileSizeMB = (asset.size / (1024 * 1024)).toFixed(2); // Convert size to MB
+                            const fileSizeMB = (asset.size / (1024 * 1024)).toFixed(0); // Convert size to MB
 
                             // Create a download button for the .apk asset
                             const downloadButtonText = getDownloadButtonText(asset.name, fileSizeMB);
