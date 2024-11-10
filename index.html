@@ -1,104 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Patched APK Repo (unofficial)</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin: 0;
-        padding: 20px;
-        background-color: #f4f4f4;
-    }
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 2em;
-        color: #333;
-    }
-    .container {
-        max-width: 600px;
-        width: 100%;
-    }
-    .release {
-        margin: 15px 0;
-        padding: 15px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-    .release h2 {
-        margin: 0;
-        font-size: 1.5em;
-        color: #333;
-    }
-    .release p {
-        margin: 10px 0;
-        color: #666;
-    }
-    .release .download-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #28a745;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        font-weight: bold;
-        font-size: 1.1em;
-        margin-top: 10px;
-        text-align: center;
-        width: 100%;  /* Makes the button 100% width of its container */
-        max-width: 420px;  /* Limits button width to 420px */
-        box-sizing: border-box; /* Includes padding and border in width calculation */
-        white-space: nowrap;  /* Prevents text from wrapping inside the button */
-        text-overflow: ellipsis; /* Adds "..." if text overflows */
-        overflow: hidden; /* Ensures overflow text doesn't break layout */
-    }
-    .release .download-btn:hover {
-        background-color: #218838;
-    }
-
-    /* Make buttons smaller on smaller screens */
-    @media (max-width: 768px) {
-        .release .download-btn {
-            font-size: 0.9em; /* Smaller text size */
-            padding: 8px 16px; /* Smaller padding */
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
-    }
 
-    /* Make buttons even smaller on extra small screens */
-    @media (max-width: 480px) {
-        .release .download-btn {
-            font-size: 0.8em; /* Even smaller text size */
-            padding: 6px 12px; /* Even smaller padding */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #333;
         }
-    }
-</style>
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .release {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            /* Needed for positioning the label inside */
+        }
+
+        .release h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .release p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .release .download-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 10px;
+            text-align: center;
+            width: 100%;
+            /* Makes the button 100% width of its container */
+            max-width: 420px;
+            /* Limits button width to 420px */
+            box-sizing: border-box;
+            /* Includes padding and border in width calculation */
+            white-space: nowrap;
+            /* Prevents text from wrapping inside the button */
+            text-overflow: ellipsis;
+            /* Adds "..." if text overflows */
+            overflow: hidden;
+            /* Ensures overflow text doesn't break layout */
+        }
+
+        .release .download-btn:hover {
+            background-color: #218838;
+        }
+
+        .latest-label {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background-color: #28a745;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 0 0 0 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+            
+        }
+
+        /* Make buttons smaller on smaller screens */
+        @media (max-width: 768px) {
+            .release .download-btn {
+                font-size: 0.9em;
+                /* Smaller text size */
+                padding: 8px 16px;
+                /* Smaller padding */
+            }
+        }
+
+        /* Make buttons even smaller on extra small screens */
+        @media (max-width: 480px) {
+            .release .download-btn {
+                font-size: 0.8em;
+                /* Even smaller text size */
+                padding: 6px 12px;
+                /* Even smaller padding */
+            }
+        }
+    </style>
 
 </head>
+
 <body>
     <h1>Minecraft Patched APK Repo</h1>
     <code>unofficial apks yk...</code>
     <code>born on 20241010_1457</code>
     <code>page made by chatgpt cuz me no dev</code>
     <p>
-<code><strong>Useful links:</strong>
-<a href="https://discord.gg/yss">YSS Discord server</a>
-<a href="https://github.com/ddf8196/MaterialBinLoader">MaterialBinLoader</a>
-<a href="https://github.com/mcbegamerxx954/mtbinloader2">MaterialBinLoader2</a>
-<a href="https://github.com/mcbegamerxx954/mcbe_shader_redirector">Draco</a>
-<a href="https://github.com/bambosan/MaterialBinLoader-Apk">MB Loader</a>
-<a href="https://github.com/CallMeSoumya2063/RandomCoolStuff/blob/main/MB%20Loader%20Mods.md">MB Mods</a>
-<a href="https://github.com/faizul726/matject">Matject</a>
-</code></p>
+        <code><strong>Useful links:</strong>
+<a style=text-decoration:none; href="https://discord.gg/yss">YSS Discord server (link ded)</a>
+|
+<a style=text-decoration:none; href="https://github.com/ddf8196/MaterialBinLoader">MaterialBinLoader</a>
+|
+<a style=text-decoration:none; href="https://github.com/mcbegamerxx954/mtbinloader2">MaterialBinLoader2</a>
+|
+<a style=text-decoration:none; href="https://github.com/mcbegamerxx954/mcbe_shader_redirector">Draco</a>
+|
+<a style=text-decoration:none; href="https://github.com/bambosan/MaterialBinLoader-Apk">MB Loader</a>
+|
+<a style=text-decoration:none; href="https://github.com/CallMeSoumya2063/RandomCoolStuff/blob/main/MB%20Loader%20Mods.md">MB Mods</a>
+|
+<a style=text-decoration:none; href="https://github.com/faizul726/matject">Matject</a>
+</code>
+    </p>
+    <br>
+    <code>MBL‌ ‌ ‌ = MaterialBinLoader (same loader that YSS apks use)<br>MBL2‌ ‌ = MaterialBinLoader2 (same as MBL, made by <a style= text-decoration:none; href=https://github.com/mcbegamerxx954>mcbegamerxx954</a>. Can load OreUI, camera, deferred mods. (1.21.44+)<br>Draco = Another loader made by <a style= text-decoration:none; href=https://github.com/mcbegamerxx954>mcbegamerxx954</a>. ONLY loads shaders from Global Resource Packs.</code>
+    <br>
 
     <div class="container">
         <div id="releases"></div>
@@ -140,14 +185,14 @@
         // Function to fetch releases and display them
         async function fetchReleases() {
             const apiUrl = 'https://api.github.com/repos/mcpebd/mcpatched/releases';
-            
+
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
                 const releasesContainer = document.getElementById('releases');
-                
-                data.forEach(release => {
+
+                data.forEach((release, index) => {
                     let totalDownloads = 0;  // To sum all downloads in a release
                     let totalSize = 0;
                     let downloadUrl = '';
@@ -166,6 +211,13 @@
                         <p><strong>Total Downloads:</strong> <span id="downloads-${release.id}">0</span></p>
                         <p><p>
                     `;
+
+                    if (index === 0) {
+                        const latestLabel = document.createElement('span');
+                        latestLabel.classList.add('latest-label');
+                        latestLabel.textContent = 'Latest';
+                        releaseElement.appendChild(latestLabel);
+                    }
 
                     // Loop through all assets (files) and create a download button for each
                     release.assets.forEach(asset => {
@@ -207,5 +259,5 @@
         fetchReleases();
     </script>
 </body>
-</html>
 
+</html>
