@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Download Latest MusicPack</title>
+    <title>Latest GitHub Release</title>
     <script>
-        async function fetchAndDownload() {
+        async function fetchLatestRelease() {
             try {
                 const response = await fetch('https://api.github.com/repos/mcpebd/musicpack/releases/latest');
                 if (!response.ok) {
@@ -14,47 +14,29 @@
                 const data = await response.json();
                 const tagName = data.tag_name;
                 document.getElementById('release-tag').textContent = `Latest Release: ${tagName}`;
-
+                
                 // Construct the download URL
-                const fileUrl = `https://github.com/mcpebd/musicpack/releases/download/${tagName}/musicpack.zip.mcpack`;
-                const fileName = `musicpack_${tagName}.zip.mcpack`;
+                const downloadUrl = `https://github.com/mcpebd/musicpack/releases/download/${tagName}/musicpack.zip.mcpack`;
 
-                // Fetch the file and trigger download with correct filename
-                downloadFile(fileUrl, fileName);
+                // Start download with custom filename
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = `musicpack_${tagName}.zip.mcpack`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
             } catch (error) {
                 console.error('Error fetching release:', error);
                 document.getElementById('release-tag').textContent = 'Failed to load latest release';
             }
         }
 
-        async function downloadFile(url, filename) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('File download failed');
-
-                const blob = await response.blob();
-                const blobUrl = URL.createObjectURL(blob);
-
-                const a = document.createElement('a');
-                a.href = blobUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-
-                // Free memory
-                URL.revokeObjectURL(blobUrl);
-            } catch (error) {
-                console.error('Download failed:', error);
-                alert('Failed to download file');
-            }
-        }
-
-        window.onload = fetchAndDownload;
+        window.onload = fetchLatestRelease;
     </script>
 </head>
 <body>
-    <h1>Downloading Latest MusicPack...</h1>
-    <p id="release-tag">Checking for latest release...</p>
+    <h1>Latest MusicPack Release</h1>
+    <p id="release-tag">Loading...</p>
 </body>
 </html>
