@@ -28,12 +28,8 @@
                 const versionText = versionRange ? `${versionRange[1]} - ${versionRange[2]}` : "No version range found";
 
                 // Update the page content with the version range
-//                document.getElementById('tagName').textContent = tagName;
-//                document.getElementById('releaseDescription').textContent = releaseDescription;
                 document.getElementById('versionRange').textContent = versionText;
 
-                // Trigger the download
-                window.location.href = `https://github.com/mcpebd/musicpack/releases/latest/download/musicpack.zip.mcpack`;
             } catch (error) {
                 console.error('Error fetching release details:', error);
                 document.getElementById('error').textContent = 'Failed to fetch release details.';
@@ -46,22 +42,22 @@
 </head>
 <body>
     <h2><img src="https://github.com/user-attachments/assets/07835c2f-c98e-4351-9a00-cdf708bb741f" style="height: 1.2em; vertical-align: -15%; display: inline-block;">
-        Downloading latest music pack...</h2>
+        Download latest music pack</h2>
     <p id="error" style="color: red;"></p>
     <p><b>Note:</b> Latest music pack is for <b><span id="versionRange">Loading...</span></b></p>
     <br>
     
     <p>
-<a href="https://github.com/mcpebd/musicpack/releases/latest/download/musicpack.zip.mcpack">
-    <button type="button">Download not started? Click to start.</button>
-</a>
-</p>
+        <a href="https://github.com/mcpebd/musicpack/releases/latest/download/musicpack.zip.mcpack">
+            <button type="button">Download Now</button>
+        </a>
+    </p>
 
-<p>
-<a href="https://github.com/mcpebd/musicpack/releases/">
-    <button type="button">See older music packs</button>
-</a>
-</p>
+    <p>
+        <a href="https://github.com/mcpebd/musicpack/releases/">
+            <button type="button">See older music packs</button>
+        </a>
+    </p>
 
     <br>
     <p>Thank you and have a good day!</p>
