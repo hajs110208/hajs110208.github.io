@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Minecraft Patched APK Repo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg-color: #f4f4f4;
@@ -13,7 +14,7 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -107,7 +108,6 @@
       animation: fadeIn 0.6s ease-in-out;
     }
 
-    /* Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -156,7 +156,6 @@
       }
     }
 
-    /* Theme Switcher Button */
     #themeToggle {
       position: fixed;
       top: 10px;
@@ -176,14 +175,12 @@
       background-color: #218838;
     }
 
-    /* Dark Theme */
     .dark {
       --bg-color: #1e1e1e;
       --text-color: #eaeaea;
       --card-bg: #2c2c2c;
     }
 
-    /* AMOLED Theme */
     .amoled {
       --bg-color: #000000;
       --text-color: #eaeaea;
@@ -194,8 +191,6 @@
 
 <body>
   <button id="themeToggle">Theme: Light</button>
-
-  <!-- Site -->
 
   <h1>
     <img src="https://github.com/user-attachments/assets/07835c2f-c98e-4351-9a00-cdf708bb741f"
@@ -271,9 +266,7 @@
     <div id="releases"></div>
   </div>
 
-  <!-- Theme and Release Script -->
   <script>
-    // Theme toggle
     const themeButton = document.getElementById('themeToggle');
     const themes = ['light', 'dark', 'amoled'];
     let current = localStorage.getItem('theme') || 'light';
