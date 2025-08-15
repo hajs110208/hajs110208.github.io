@@ -336,7 +336,7 @@
             div.appendChild(tag);
           }
           release.assets.forEach(asset => {
-            if (asset.name.endsWith('.apk')) {
+            if (asset.name.startsWith('1')) {
               const size = (asset.size / 1024 / 1024).toFixed(0);
               totalDownloads += asset.download_count;
               const a = document.createElement('a');
@@ -345,6 +345,7 @@
               a.className = "download-btn";
               a.textContent = getDownloadButtonText(asset.name, size);
               div.appendChild(a);
+            
             }
           });
           div.querySelector(`#downloads-${release.id}`).textContent = totalDownloads;
